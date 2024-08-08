@@ -10,10 +10,6 @@ export const typeCheckerUtility = (
   element = requiredParamsUtility("element"),
   type = requiredParamsUtility("type")
 ) => {
-  if (typeof element !== "string") {
-    throw new TypeError("element must be of type string!");
-  }
-
   const allowedTypes = [
     "bigint",
     "boolean",
