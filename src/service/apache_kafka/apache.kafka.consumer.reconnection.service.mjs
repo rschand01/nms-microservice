@@ -1,9 +1,18 @@
 import { logger } from "../../config/logger.config.mjs";
+import { requiredParamsUtility } from "../../utility/required.params.utility.mjs";
+import { typeCheckerUtility } from "../../utility/type.checker.utility.mjs";
 
-export const kafkaConsumeReconnect = (kafkaConsumer, eventProcesser) => {
-  if (typeof eventProcesser !== "function") {
-    throw new TypeError("eventProcesser must be a function");
-  }
+/**
+ * @description Sets up an event listener to handle Kafka consumer crashes and attempt reconnection.
+ * @param {object} kafkaConsumer The Kafka consumer instance to be monitored and reconnected.
+ * @param {function} eventProcesser The function to process each Kafka message. Must be a function.
+ * @throws {TypeError} Throws if `eventProcesser` is not a function.
+ */
+export const kafkaConsumeReconnect = (
+  kafkaConsumer = requiredParamsUtility("kafkaConsumer"),
+  eventProcesser = requiredParamsUtility("eventProcesser")
+) => {
+  typeCheckerUtility(eventProcesser, "function");
 
   kafkaConsumer.on("consumer.crash", async () => {
     logger.log({
