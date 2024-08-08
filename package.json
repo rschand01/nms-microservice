@@ -1,0 +1,65 @@
+{
+  "name": "nms-microservice",
+  "version": "1.0.0",
+  "description": "A fully fledged Notification Management System developed using JavaScript, Node.js, Express.js, Bull.js, Redis, & Apache Kafka. Uses Microservices Architecture! 🌹",
+  "main": "server.mjs",
+  "private": "false",
+  "type": "module",
+  "scripts": {
+    "prestart": "npx eslint .",
+    "start": "node ./server.mjs",
+    "preserve": "npx eslint .",
+    "serve": "nodemon ./server.mjs",
+    "pregithub-publish": "npx eslint .",
+    "github-publish": "git push -u origin development",
+    "lint": "npx eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "directory": ".",
+    "type": "git",
+    "url": "git+https://github.com/rschand-dev/nms-microservice.git"
+  },
+  "keywords": [
+    "nodejs",
+    "redis",
+    "rest-api",
+    "expressjs",
+    "redis-client",
+    "docker",
+    "apache-kafka",
+    "personal-project",
+    "web-security",
+    "express-session",
+    "backend-api",
+    "express-server",
+    "backend-development",
+    "notification-management-system",
+    "express-rate-limit",
+    "microservice-architecture"
+  ],
+  "author": "Reginald Chand",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/rschand-dev/nms-microservice/issues"
+  },
+  "homepage": "https://github.com/rschand-dev/nms-microservice#readme",
+  "dependencies": {
+    "bull": "^4.16.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "joi": "^17.13.3",
+    "kafkajs": "^2.2.4",
+    "rate-limit-redis": "^4.2.0",
+    "redis": "^4.7.0",
+    "winston": "^3.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
+    "globals": "^15.9.0",
+    "nodemon": "^3.1.4"
+  }
+}
