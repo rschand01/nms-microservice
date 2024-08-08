@@ -25,7 +25,15 @@ export const kafkaConsumeReconnect = (
       await kafkaConsumer.connect();
       await kafkaConsumer.run({
         eachMessage: async ({ topic, partition, message }) => {
-          eventProcesser(topic, partition, message);
+          try {
+            await eventProcesser(topic, partition, message);
+          } catch (error) {
+            logger.log({
+              level: "error",
+              message: error.message,
+              additional: error.stack,
+            });
+          }
         },
       });
     } catch (error) {
