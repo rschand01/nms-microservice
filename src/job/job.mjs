@@ -1,9 +1,6 @@
-import { emailSenderUtility } from "../utility/email.sender.utility.mjs";
 import { logger } from "../config/logger.config.mjs";
-import { pushNotifierUtility } from "../utility/push.notifier.utility.mjs";
 import { rateLimitedQueue } from "../queue/rate.limited.queue.mjs";
 import { requiredParamsUtility } from "../utility/required.params.utility.mjs";
-import { smsSenderUtility } from "../utility/sms.sender.utility.mjs";
 import { typeCheckerUtility } from "../utility/type.checker.utility.mjs";
 
 export const emailSendingJob = async (
@@ -12,7 +9,7 @@ export const emailSendingJob = async (
   typeCheckerUtility(notificationData, "object");
 
   try {
-    await rateLimitedQueue.add(emailSenderUtility(notificationData), {
+    await rateLimitedQueue.add(notificationData, {
       priority: 4,
     });
   } catch (error) {
@@ -26,7 +23,7 @@ export const emailSendingJob = async (
 
 export const smsSendingJob = async (notificationData) => {
   try {
-    await rateLimitedQueue.add(smsSenderUtility(notificationData), {
+    await rateLimitedQueue.add(notificationData, {
       priority: 3,
     });
   } catch (error) {
@@ -40,7 +37,7 @@ export const smsSendingJob = async (notificationData) => {
 
 export const pushNotificationJob = async (notificationData) => {
   try {
-    await rateLimitedQueue.add(pushNotifierUtility(notificationData), {
+    await rateLimitedQueue.add(notificationData, {
       priority: 2,
     });
   } catch (error) {
@@ -54,7 +51,7 @@ export const pushNotificationJob = async (notificationData) => {
 
 export const otpSmsSendingJob = async (notificationData) => {
   try {
-    await rateLimitedQueue.add(smsSenderUtility(notificationData), {
+    await rateLimitedQueue.add(notificationData, {
       priority: 1,
     });
   } catch (error) {
