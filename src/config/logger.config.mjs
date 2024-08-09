@@ -1,4 +1,7 @@
 import { createLogger, format, transports } from "winston";
+import { config as dotEnvConfig } from "dotenv";
+
+dotEnvConfig();
 
 /**
  * @example logger.log({
