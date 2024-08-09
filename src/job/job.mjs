@@ -2,9 +2,15 @@ import { emailSenderUtility } from "../utility/email.sender.utility.mjs";
 import { logger } from "../config/logger.config.mjs";
 import { pushNotifierUtility } from "../utility/push.notifier.utility.mjs";
 import { rateLimitedQueue } from "../queue/rate.limited.queue.mjs";
+import { requiredParamsUtility } from "../utility/required.params.utility.mjs";
 import { smsSenderUtility } from "../utility/sms.sender.utility.mjs";
+import { typeCheckerUtility } from "../utility/type.checker.utility.mjs";
 
-export const emailSendingJob = async (notificationData) => {
+export const emailSendingJob = async (
+  notificationData = requiredParamsUtility("notificationData")
+) => {
+  typeCheckerUtility(notificationData, "object");
+
   try {
     await rateLimitedQueue.add(emailSenderUtility(notificationData), {
       priority: 4,
