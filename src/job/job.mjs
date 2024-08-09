@@ -21,7 +21,11 @@ export const emailSendingJob = async (
   }
 };
 
-export const smsSendingJob = async (notificationData) => {
+export const smsSendingJob = async (
+  notificationData = requiredParamsUtility("notificationData")
+) => {
+  typeCheckerUtility(notificationData, "object");
+
   try {
     await rateLimitedQueue.add(notificationData, {
       priority: 3,
@@ -35,7 +39,11 @@ export const smsSendingJob = async (notificationData) => {
   }
 };
 
-export const pushNotificationJob = async (notificationData) => {
+export const pushNotificationJob = async (
+  notificationData = requiredParamsUtility("notificationData")
+) => {
+  typeCheckerUtility(notificationData, "object");
+
   try {
     await rateLimitedQueue.add(notificationData, {
       priority: 2,
@@ -49,7 +57,11 @@ export const pushNotificationJob = async (notificationData) => {
   }
 };
 
-export const otpSmsSendingJob = async (notificationData) => {
+export const otpSmsSendingJob = async (
+  notificationData = requiredParamsUtility("notificationData")
+) => {
+  typeCheckerUtility(notificationData, "object");
+
   try {
     await rateLimitedQueue.add(notificationData, {
       priority: 1,
