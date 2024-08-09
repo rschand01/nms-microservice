@@ -2,6 +2,8 @@ import Joi from "joi";
 
 export const envValidator = Joi.object({
   EXPRESS_PORT: Joi.string().required(),
+  NODE_ENV: Joi.string().required(),
+  WINSTON_SERVICE: Joi.string().required(),
   APACHE_KAFKA_CLIENT_ID: Joi.string().required(),
   APACHE_KAFKA_BROKER_1: Joi.string().required(),
   APACHE_KAFKA_BROKER_2: Joi.string().required(),
