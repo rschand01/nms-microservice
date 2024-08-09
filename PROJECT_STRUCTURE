@@ -1,0 +1,55 @@
+nms-microservice
+├── .env
+├── .env.example
+├── .github
+│   └── workflows
+│       ├── codeql.yml
+│       └── eslint.yml
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── eslint.config.mjs
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── PROJECT_STRUCTURE
+├── README.md
+├── server.mjs
+└── src
+    ├── config
+    │   └── logger.config.mjs
+    ├── constant
+    │   └── constant.mjs
+    ├── controller
+    │   ├── notification.consumer.controller.mjs
+    │   └── notification.producer.controller.mjs
+    ├── event
+    │   └── main.event.processer.event.mjs
+    ├── job
+    │   └── job.mjs
+    ├── middleware
+    │   └── rate.limit.middleware.mjs
+    ├── queue
+    │   └── rate.limited.queue.mjs
+    ├── router
+    │   └── router.mjs
+    ├── service
+    │   └── apache_kafka
+    │       ├── apache.kafka.consumer.reconnection.service.mjs
+    │       ├── apache.kafka.consumer.service.mjs
+    │       ├── apache.kafka.consumer.subscriber.service.mjs
+    │       ├── apache.kafka.producer.service.mjs
+    │       └── apache.kafka.service.mjs
+    ├── store
+    │   └── redis.client.store.mjs
+    ├── utility
+    │   ├── email.sender.utility.mjs
+    │   ├── push.notifier.utility.mjs
+    │   ├── queue.event.listener.utility.mjs
+    │   ├── required.params.utility.mjs
+    │   ├── sms.sender.utility.mjs
+    │   └── type.checker.utility.mjs
+    ├── validator
+    │   ├── env.validator.mjs
+    │   └── notification.validator.mjs
+    └── worker
+        └── rate.limited.queue.worker.mjs
