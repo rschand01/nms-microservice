@@ -1,7 +1,7 @@
 {
   "name": "nms-microservice",
   "version": "1.0.0",
-  "description": "A fully fledged Notification Management System developed using JavaScript, Node.js, Express.js, Bull.js, Redis, & Apache Kafka. Uses Microservices Architecture! 🌹",
+  "description": "A fully fledged Notification Management System developed using JavaScript, Node.js, Express.js, Bull.js, Redis, & Apache Kafka. Uses Microservices Architecture. 🌹",
   "main": "server.mjs",
   "private": "false",
   "type": "module",
