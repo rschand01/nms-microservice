@@ -18,41 +18,37 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-(async () => {
-  const { error } = envValidator.validate(process.env);
-
-  try {
-    if (error) {
-      logger.log({ level: "error", message: error.message });
-      process.exit(1);
-    }
-
-    await initializeKafka();
-    await kafkaConsumerSubscribe("transcational", true);
-    await kafkaConsumerSubscribe("promotional", true);
-
-    rateLimitedQueueWorker();
-
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
-
-    app.use(cors(corsOptions));
-
-    app.use(rateLimiter);
-    app.use("/", router);
-
-    app.listen(process.env.EXPRESS_PORT, () => {
-      logger.log({
-        level: "info",
-        message: "Express Server is successfully listening!",
-        additional: `port: ${process.env.EXPRESS_PORT}`,
-      });
-    });
-  } catch (error) {
-    logger.log({
-      level: "error",
-      message: error.message,
-      additional: error.stack,
-    });
+try {
+  if (error) {
+    logger.log({ level: "error", message: error.message });
+    process.exit(1);
   }
-})();
+
+  await initializeKafka();
+  await kafkaConsumerSubscribe("transcational", true);
+  await kafkaConsumerSubscribe("promotional", true);
+
+  rateLimitedQueueWorker();
+
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  app.use(cors(corsOptions));
+
+  app.use(rateLimiter);
+  app.use("/", router);
+
+  app.listen(process.env.EXPRESS_PORT, () => {
+    logger.log({
+      level: "info",
+      message: "Express Server is successfully listening!",
+      additional: `port: ${process.env.EXPRESS_PORT}`,
+    });
+  });
+} catch (error) {
+  logger.log({
+    level: "error",
+    message: error.message,
+    additional: error.stack,
+  });
+}
