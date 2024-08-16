@@ -18,6 +18,8 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+const { error } = envValidator.validate(process.env);
+
 try {
   if (error) {
     logger.log({ level: "error", message: error.message });
